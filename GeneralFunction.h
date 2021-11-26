@@ -2,17 +2,19 @@
 
 #include "Function.h"
 
-class Polynomial : public Function {
+class GeneralFunction : public Function {
 private:
-	double coeff;
-	int degree;
+	Function** elements;
+	int size;
 public:
-	Polynomial(double a, int n);
-	~Polynomial();
+	GeneralFunction(int n);
+	~GeneralFunction();
 
 	Function* diff() const;
 	double eval(double x) const;
 	void print() const;
 	void plot() const;
 	void export_func() const;
+
+	void addFunc(Function*);
 };
