@@ -1,4 +1,5 @@
 #include "Polynomial.h"
+#include "Constant.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,12 +11,14 @@ Polynomial::Polynomial(double a, int n)
 	this->degree = n;
 }
 
+Polynomial::~Polynomial() {}
+
 Function* Polynomial::diff() const
 {
 	Function* ret;
 
-	if (this->degree == 1) ret = new Polynomial(this->coeff * this->degree, this->degree - 1);
-	else ret = new Polynomial(this->coeff * this->degree, this->degree - 1); //return a constant that's just coeff
+	if (this->degree == 1) ret = new Constant(this->coeff);
+	else ret = new Polynomial(this->coeff * this->degree, this->degree - 1); 
 
 	return ret;
 }
