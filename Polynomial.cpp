@@ -1,7 +1,7 @@
 #include "Polynomial.h"
 #include "Constant.h"
 #include <iostream>
-#include <cmath>
+#include <math.h>
 
 using namespace std;
 
@@ -31,7 +31,9 @@ double Polynomial::eval(double x) const
 
 void Polynomial::print() const 
 {
-	cout << this->coeff << "x^" << this->degree;
+	if(coeff != 1) cout << this->coeff;
+	cout << "x";
+	if (degree != 1) cout << "^" << degree;
 }
 
 void Polynomial::plot() const 

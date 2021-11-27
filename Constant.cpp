@@ -24,7 +24,7 @@ double Constant::eval(double x) const
 
 void Constant::print() const
 {
-	cout << this->value;
+	if(value != 0) cout << this->value;
 }
 
 void Constant::plot() const

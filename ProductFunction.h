@@ -2,14 +2,14 @@
 
 #include "Function.h"
 
-class ProductFunc : public Function {
+class ProductFunction : public Function {
 private:
 	Function* f; 
 	Function* g;
 	//of form (f)(g)
 public:
-	ProductFunc(Function*, Function*);
-	~ProductFunc();
+	ProductFunction(Function*, Function*);
+	~ProductFunction();
 
 	Function* diff() const;
 	double eval(double x) const;
