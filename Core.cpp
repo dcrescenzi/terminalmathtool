@@ -7,6 +7,7 @@
 #include "CompositeFunction.h"
 #include "RationalFunction.h"
 #include "Polynomial.h"
+#include "Logarithmic.h"
 #include "Trig.h"
 #include "Constant.h"
 
@@ -46,13 +47,29 @@ int main()
 {
 
 	Function* f1 = new Trig(1, "sin");
-	Function* f2 = new Polynomial(1, 2);
+	Function* f2 = new Logarithmic(4, 2);
 
-	CompositeFunction* josh = new CompositeFunction(f2, f1);
-	RationalFunction* josh1 = new RationalFunction(f1, f2);
+	Function* f3 = new Polynomial(2, 3);
 
-	cout << josh->diff()->eval(1.23) << endl;
-	cout << josh1->diff()->eval(1.23) << endl;
+	Function* sinlog = new CompositeFunction(f2, f1);
+
+	GeneralFunction* numer = new GeneralFunction(2);
+	numer->addFunc(sinlog);
+	numer->addFunc(f3);
+
+	Function* t1 = new Trig(1.5, "cos");
+	Function* t2 = new Polynomial(1, 4);
+
+	Function* denom = new ProductFunction(t1, t2);
+
+	Function* func = new RationalFunction(numer, denom);
+
+
+	func->print();
+	cout << endl;
+
+	cout << func->diff()->diff()->diff()->eval(2.2) << endl;
+	func->diff()->diff()->diff()->print();
 
 	return (0);
 }
