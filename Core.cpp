@@ -4,6 +4,8 @@
 #include "Function.h"
 #include "GeneralFunction.h"
 #include "ProductFunction.h"
+#include "CompositeFunction.h"
+#include "RationalFunction.h"
 #include "Polynomial.h"
 #include "Trig.h"
 #include "Constant.h"
@@ -12,6 +14,12 @@ using namespace std;
 /*
 TODO
 
+	handle NaN cases
+	composite function printing, see below
+
+	comment!!
+
+	destructors for all obj w pointers
 	copy con, overloaded assignment for funcs with pointers
 	enum for sin and cos
 
@@ -30,6 +38,7 @@ TODO
 		-number cleaning, ex 0.000001323 -> 1, 0.99992193 -> 1 etc
 		-common constant recognition?? ex pi/n
 
+	Division by zero, log < 0, etc.  Im numbers??
 */
 
 
@@ -37,28 +46,13 @@ int main()
 {
 
 	Function* f1 = new Trig(1, "sin");
-	Function* f2 = new Polynomial(1, 1);
+	Function* f2 = new Polynomial(1, 2);
 
-	Function* prod = new ProductFunction(f2, f1);
+	CompositeFunction* josh = new CompositeFunction(f2, f1);
+	RationalFunction* josh1 = new RationalFunction(f1, f2);
 
-	Function* deriv1 = prod->diff();
-	Function* deriv2 = deriv1->diff();
-	Function* deriv3 = deriv2->diff();
-	Function* deriv4 = deriv3->diff();
-
-	prod->print();
-	cout << "\n";
-	deriv1->print();
-	cout << "\n";
-	deriv2->print();
-	cout << "\n";
-	deriv3->print();
-	cout << "\n";
-	deriv4->print();
-	cout << "\n";
-
-	cout << prod->eval(3.1415) << endl;
-	cout << prod->eval(3.1415/2);
+	cout << josh->diff()->eval(1.23) << endl;
+	cout << josh1->diff()->eval(1.23) << endl;
 
 	return (0);
 }
