@@ -12,6 +12,8 @@
 #include "Trig.h"
 #include "Constant.h"
 
+#include "InputHelper.h"
+
 using namespace std;
 /*
 TODO
@@ -44,34 +46,14 @@ TODO
 
 int main() 
 {
+	InputHelper input;
 
-	Function* f1 = new Trig(1, "sin");
-	Function* f3 = new Exponential(2, 2);
-	
-	Function* f2 = new Logarithmic(4, 2);
-
-	Function* s1 = new CompositeFunction(f2, f1);
-
-	Function* sinlog = new ProductFunction(s1, f3);
-	
-	GeneralFunction* numer = new GeneralFunction(2);
-	numer->addFunc(sinlog);
-	numer->addFunc(f3);
-
-	Function* t1 = new Trig(1.5, "cos");
-	Function* t2 = new Polynomial(1, 4);
-
-	Function* denom = new ProductFunction(t1, t2);
-
-	Function* func = new RationalFunction(numer, denom);
-
+	Function* func = input.intake();
 
 	func->print();
 	cout << endl;
-
-	cout << func->diff()->diff()->diff()->eval(2.2) << endl;
-	func->diff()->diff()->diff()->print();
-	
+	func->diff()->print();
+	cout << endl;
 
 	return (0);
 }
