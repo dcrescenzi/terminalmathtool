@@ -8,6 +8,7 @@
 #include "RationalFunction.h"
 #include "Polynomial.h"
 #include "Logarithmic.h"
+#include "Exponential.h"
 #include "Trig.h"
 #include "Constant.h"
 
@@ -16,7 +17,7 @@ using namespace std;
 TODO
 
 	handle NaN cases
-	composite function printing, see below
+	Division by zero, log < 0, etc.  Im numbers??
 
 	comment!!
 
@@ -38,8 +39,6 @@ TODO
 	OUTPUT
 		-number cleaning, ex 0.000001323 -> 1, 0.99992193 -> 1 etc
 		-common constant recognition?? ex pi/n
-
-	Division by zero, log < 0, etc.  Im numbers??
 */
 
 
@@ -47,12 +46,14 @@ int main()
 {
 
 	Function* f1 = new Trig(1, "sin");
+	Function* f3 = new Exponential(2, 2);
+	
 	Function* f2 = new Logarithmic(4, 2);
 
-	Function* f3 = new Polynomial(2, 3);
+	Function* s1 = new CompositeFunction(f2, f1);
 
-	Function* sinlog = new CompositeFunction(f2, f1);
-
+	Function* sinlog = new ProductFunction(s1, f3);
+	
 	GeneralFunction* numer = new GeneralFunction(2);
 	numer->addFunc(sinlog);
 	numer->addFunc(f3);
@@ -70,6 +71,7 @@ int main()
 
 	cout << func->diff()->diff()->diff()->eval(2.2) << endl;
 	func->diff()->diff()->diff()->print();
+	
 
 	return (0);
 }

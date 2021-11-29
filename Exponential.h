@@ -5,11 +5,9 @@
 class Exponential : public Function {
 private:
 	double coeff;
-	Function* f;
-	Function* g;
-	//of form f^g
+	double base;
 public:
-	Exponential(double, Function*, Function*);
+	Exponential(double, double);
 	~Exponential();
 
 	Function* diff() const;

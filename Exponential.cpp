@@ -5,39 +5,29 @@
 
 using namespace std;
 
-Exponential::Exponential(double c, Function* f_func, Function* g_func)
+Exponential::Exponential(double c, double b)
 {
-	//form c*f^g
 	this->coeff = c;
-	this->f = f_func;
-	this->g = g_func;
+	this->base = b;
 }
 
-Exponential::~Exponential()
-{
-	delete this->f;
-	delete this->g;
-}
+Exponential::~Exponential() {}
 
 Function* Exponential::diff() const
 {
-	return new Constant(3);
-	//everything down
-	//return ret;
+	return new Exponential(this->coeff * log(this->base), this->base);
 }
 
 double Exponential::eval(double x) const
 {
-	double ret = pow(this->f->eval(x), this->g->eval(x));
+	double ret = this->coeff * pow(this->base, x);
 	return ret;
 }
 
 void Exponential::print() const
 {
-	this->f->print();
-	cout << ")(";
-	this->g->print();
-	cout << ")";
+	if (coeff != 1) cout << "(" << this->coeff << ")";
+	cout << this->base << "^x";
 }
 
 void Exponential::plot() const
