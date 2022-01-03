@@ -54,6 +54,7 @@ int main()
 	cout << endl;
 	func->diff()->print();
 	cout << endl;
+	cout << func->diff()->eval(2.2) << endl;
 
 	return (0);
 }
