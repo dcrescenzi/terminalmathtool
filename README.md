@@ -1,4 +1,4 @@
-# MathBuddy
+# MathBuddy :heavy_plus_sign: :heavy_multiplication_x: :heavy_minus_sign: :heavy_division_sign:
 
 MathBuddy is a command line math tool designed to help create, manipulate, and visualize advanced functions.
 
